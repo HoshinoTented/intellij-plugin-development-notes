@@ -47,3 +47,48 @@ object FileNameValidator : InputValidatorEx {
   override fun getErrorText(input : String?) = "明明都返回true了, 怎么可能还出现这条消息"
 }
 ```
+
+哦对。。还有plugin.xml的配置内容 emmmmm
+```xml
+<idea-plugin>
+  <extensions defaultExtensionNs="com.intellij">
+    <internalFileTemplate name="这个是模板名称"/>
+    <!--所有要注册的模板都放在这里注册哦, 跟上面一样ovo-->
+  </extensions>
+  
+  <actions>
+    <!--这里注册Action哦, 例如上面的NewFileAction就这样注册-->
+    <action class="NewFileAction" id="Note.NewFile">
+      <add-to-group 
+        group-id="NewGroup" 
+        anchor="after" 
+        relative-to-action="NewFile"/>
+      <!--add-to-group 是用来把这个Action加到某个Group里的, 例如NewGroup就是新建文件的Group(吧-->
+      <!--anchor 大概是相对的方式, 例如after就是相对于...之后-->
+      <!--relative-to-action 是相对的Action, 例如NewFile就是New File这个选项(我不知道这个值哪来的-->
+    </action>  
+  </actions>
+</idea-plugin>
+```
+
+模板默认内容~  
+以下的文件需要放在res/fileTemplates文件夹里来着...  
+这个是 这个是模板名称.文件名后缀.ft  
+就是模板的内容  
+```
+这个是模板内容
+当通过 NewFileAction 创建文件的时候, 文件内容将会是这些
+```
+
+这个呢, 是 这个是模板名称.文件名后缀.html  
+就是模板的简介(模板编辑框下面的辣个
+```html
+<!DOCTYPE HTML>
+<html>
+<body>
+<h1>Hello world!</h1>
+<p>这个是一个段落</p>
+<del>你看不到我...你看不到我...</del>
+</body>
+</html>
+```
