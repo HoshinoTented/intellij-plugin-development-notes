@@ -13,5 +13,15 @@ val file = dir.findChild("文件名称")
 来获取文件夹下的文件  
 <del>好麻烦</del>  
 emmmm也布吉岛对不对, 个人感觉是酱紫  
+createDirectoryIfMissing的时候可能会抛个异常  
+这个时候我们把关于文件操作的代码放到  
+```kotlin
+fun doSomething() {
+  ApplicationManager.getApplication().runWriteAction {
+    //TODO something
+  }
+}
+```
+`runWriteAction`里面就好了  
 没了  
 先睡觉  
