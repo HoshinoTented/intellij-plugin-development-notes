@@ -4,19 +4,24 @@ group = "com.github.HoshinoTented"
 version = "1.0"
 
 plugins {
-    kotlin("jvm") version "1.2.30"
+	id("org.jetbrains.intellij") version "0.2.18"
+	kotlin("jvm") version "1.2.30"
 }
 
 val kotlinVersion = "1.2.30"
 
+intellij {
+	localPath = ext["ideaC_path"].toString()
+}
+
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8", kotlinVersion))
+	implementation(kotlin("stdlib-jdk8", kotlinVersion))
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
+	kotlinOptions.jvmTarget = "1.8"
 }
